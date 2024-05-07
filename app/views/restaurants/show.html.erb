@@ -8,10 +8,18 @@
   <% @restaurant.reviews.each do |review| %>
     <li>
       <%= review.content %>
-      <%= review.rating %>
+      <%= review.rating %> stars
     </li>
   <% end %>
 </ul>
+
+<!-- Review Form using Simple Form -->
+<h3>Add a Review:</h3>
+<%= simple_form_for [@restaurant, @restaurant.reviews.build] do |f| %>
+  <%= f.input :content %>
+  <%= f.input :rating %>
+  <%= f.button :submit %>
+<% end %>
 
 <%= link_to 'Add a review', new_restaurant_review_path(@restaurant) %>
 <%= link_to 'Back', restaurants_path %>
